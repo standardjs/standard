@@ -5,7 +5,14 @@ describe("$tandard tests", function() {
 		$standardCollection;
 
 	function filterPropertyNames(object) {
-		return Object.getOwnPropertyNames(object)
+		return Object
+					.getOwnPropertyNames(object)
+					.filter(function (property){
+						return !/^on/.test(property);
+					})
+					.filter(function (property){
+						return !/^(moz|webkit|ms)/.test(property);
+					});
 	}
 	beforeEach(function () {
 	elementArray = [document.createElement("div"),document.createElement("span")];
