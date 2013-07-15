@@ -1,14 +1,26 @@
 describe("$tandard tests", function() {
 	var elementArray,
 		results,
-		arrayLength
+		arrayLength,
+		$standardCollection;
 	beforeEach(function () {
 	elementArray = [document.createElement("div"),document.createElement("span")];
 	arrayLength = elementArray.length;
+	$standardCollection = $standard(elementArray);
 	});
 
-	it("$tandard should be a function in global scope",function () {
-		expect(typeof $tandard == "function").toBe(true);
+	it("$standard should be a function in global scope",function () {
+		expect(typeof $standard == "function").toBe(true);
+	})
+	it("$standardCollection should implement methods that match all members of Node", function () {
+		var properties = Object.getOwnPropertyNames(Node.prototype),
+			missing = [];
+		for (var i =0;i<properties.length;i++) {
+			if (!(properties[i] in $standardCollection) && !(properties[i] in Node)) {
+				missing.push(properties[i]);
+			}
+		}
+		expect(missing.length).toBe(0,"The following members where missing:"+missing.join(', '));
 	})
 
 

@@ -1,5 +1,5 @@
 (function (scope, $standard,constructor,prototype,definitions) {
-	scope.$tandard = $standard;
+	scope.$standard = $standard;
 	var Standard = $standard.Standard = constructor;
 	for (var i in prototype) {
 		Standard[i] = prototype[i];
