@@ -3,6 +3,10 @@ describe("$tandard tests", function() {
 		results,
 		arrayLength,
 		$standardCollection;
+
+	function filterPropertyNames(object) {
+		return Object.getOwnPropertyNames(object)
+	}
 	beforeEach(function () {
 	elementArray = [document.createElement("div"),document.createElement("span")];
 	arrayLength = elementArray.length;
@@ -13,7 +17,7 @@ describe("$tandard tests", function() {
 		expect(typeof $standard == "function").toBe(true);
 	})
 	it("$standardCollection should implement methods that match all members of Node", function () {
-		var properties = Object.getOwnPropertyNames(Node.prototype),
+		var properties = filterPropertyNames(Node.prototype),
 			missing = [];
 		for (var i =0;i<properties.length;i++) {
 			if (!(properties[i] in $standardCollection) && !(properties[i] in Node)) {
@@ -23,7 +27,7 @@ describe("$tandard tests", function() {
 		expect(missing.length).toBe(0,"The following members where missing:"+missing.join(', '));
 	})
 	it("$standardCollection should implement methods that match all (standard) members of Element", function () {
-		var properties = Object.getOwnPropertyNames(Element.prototype),
+		var properties = filterPropertyNames(Element.prototype),
 			missing = [];
 		for (var i =0;i<properties.length;i++) {
 			if (!(properties[i] in $standardCollection) && !(properties[i] in Element)) {
@@ -33,7 +37,7 @@ describe("$tandard tests", function() {
 		expect(missing.length).toBe(0,"The following members where missing:"+missing.join(', '));
 	})
 	it("$standardCollection should implement methods that match all (standard) members of HTMLElement", function () {
-		var properties = Object.getOwnPropertyNames(HTMLElement.prototype),
+		var properties = filterPropertyNames(HTMLElement.prototype),
 			missing = [];
 		for (var i =0;i<properties.length;i++) {
 			if (!(properties[i] in $standardCollection) && !(properties[i] in HTMLElement)) {
