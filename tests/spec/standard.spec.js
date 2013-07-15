@@ -22,6 +22,17 @@ describe("$tandard tests", function() {
 		}
 		expect(missing.length).toBe(0,"The following members where missing:"+missing.join(', '));
 	})
+	it("$standardCollection should implement methods that match all (standard) members of HTMLElement", function () {
+		var properties = Object.getOwnPropertyNames(HTMLElement.prototype),
+			missing = [];
+		for (var i =0;i<properties.length;i++) {
+			if (!(properties[i] in $standardCollection) && !(properties[i] in HTMLElement)) {
+				missing.push(properties[i]);
+			}
+		}
+		expect(missing.length).toBe(0,"The following members where missing:"+missing.join(', '));
+	})
+	
 
 
  })
